@@ -1,25 +1,21 @@
 (async () => {
-    const pathParts = window.location.pathname.split('/').filter(Boolean);
-    const basePath = pathParts.length > 0 ? '/' + pathParts[0] + '/' : '/';
-    const alias = pathParts.length > 1 ? pathParts.slice(1).join('/') : '';
+    const params = new URLSearchParams(window.location.search);
+    const alias = params.get('link');
 
-    console.log('basePath:', basePath);
-    console.log('alias:', alias);
+    if (!alias) {
+        document.body.innerHTML = '<h1>❌ No se indicó link para redirigir</h1>';
+        return;
+    }
 
     try {
-        console.log('Intentando cargar:', basePath + 'data/links.json');
-        const res = await fetch(basePath + 'data/links.json');
+        const res = await fetch('data/links.json');
         if (!res.ok) throw new Error('No se pudo cargar links.json');
         const links = await res.json();
 
-        console.log('Links cargados:', links);
-
         if (links[alias]) {
-            console.log('Redirigiendo a:', links[alias]);
             window.location.href = links[alias];
         } else {
-            console.log('Alias no encontrado, redirigiendo a 404');
-            window.location.href = basePath + '404.html';
+            window.location.href = '404.html';
         }
     } catch (error) {
         console.error(error);
