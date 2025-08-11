@@ -2,15 +2,34 @@
 
 Proyecto para gestionar redirecciones en un dominio usando solo archivos estáticos, ideal para GitHub Pages.
 
-Solo tienes que editar el archivo `data/links.json` con las rutas y URLs destino, y al acceder a `tudominio.com/alias` se redirige automáticamente.
+---
 
-Funciona sin backend y es fácil de mantener.
+## Uso
+
+Para redirigir, usa URLs con el parámetro `link` en la query string. Por ejemplo:
+
+
+Esto hará que el proyecto busque `link1` en `data/links.json` y redirija a la URL configurada.
 
 ---
 
-Archivos principales:
+https://javimb.link/?link=link1
+
+## Archivos principales
 
 - `index.html`: carga el script de redirección.  
-- `data/links.json`: lista de enlaces.  
-- `js/redirect.js`: lógica de redirección.  
-- `404.html`: página para enlaces no encontrados.
+- `data/links.json`: lista de enlaces con formato `"alias": "url"`.  
+- `js/redirect.js`: lógica de redirección que lee el parámetro `link`.  
+- `404.html`: página que se muestra si el alias no existe.
+
+---
+
+## Añadir o modificar enlaces
+
+Edita el archivo `data/links.json` con los alias y URLs deseados, por ejemplo:
+
+```json
+{
+  "link1": "https://youtube.com",
+  "link2": "https://openai.com"
+}
