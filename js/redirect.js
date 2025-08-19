@@ -1,24 +1,19 @@
-(async () => {
-    const params = new URLSearchParams(window.location.search);
-    const alias = params.get('link');
+// redirect.js
+fetch('data/links.json')
+  .then(response => response.json())
+  .then(links => {
+    // Obtener el "hash" sin el símbolo #
+    const alias = window.location.hash.substring(1);
 
-    if (!alias) {
-        document.body.innerHTML = '<h1>❌ No se indicó link para redirigir</h1>';
-        return;
+    if (alias && links[alias]) {
+      window.location.href = links[alias];
+    } else if (alias) {
+      document.body.innerHTML = `<h1>El enlace "${alias}" no existe</h1>`;
+    } else {
+      document.body.innerHTML = "<h1>Bienvenido al gestor de redirecciones</h1>";
     }
-
-    try {
-        const res = await fetch('data/links.json');
-        if (!res.ok) throw new Error('No se pudo cargar links.json');
-        const links = await res.json();
-
-        if (links[alias]) {
-            window.location.href = links[alias];
-        } else {
-            window.location.href = '404.html';
-        }
-    } catch (error) {
-        console.error(error);
-        document.body.innerHTML = '<h1>Error cargando enlaces</h1>';
-    }
-})();
+  })
+  .catch(error => {
+    console.error('Error cargando links.json:', error);
+    document.body.innerHTML = "<h1>Error cargando redirecciones</h1>";
+  });

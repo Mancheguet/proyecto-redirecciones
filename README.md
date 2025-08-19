@@ -1,35 +1,30 @@
-# Gestor de Redirecciones Estático
+# Gestor de Redirecciones con Hash
 
-Proyecto para gestionar redirecciones en un dominio usando solo archivos estáticos, ideal para GitHub Pages.
+Este proyecto permite usar tu dominio como un gestor de enlaces sencillo, sin servidor.  
+Se basa en archivos estáticos (HTML + JS + JSON) y funciona en GitHub Pages o cualquier hosting estático.
 
----
+## 🚀 Cómo funciona
+- Cada enlace está definido en `data/links.json`.
+- Se accede a ellos con un **hash** (`#`) en la URL.
 
-## Uso
+Ejemplo:
+- `https://midominio.com/#link1` → redirige a YouTube.
+- `https://midominio.com/#link2` → redirige a OpenAI.
+- `https://midominio.com/` → muestra una pantalla de bienvenida.
 
-Para redirigir, usa URLs con el parámetro `link` en la query string. Por ejemplo:
+## 📂 Estructura del proyecto
 
+├── index.html
+├── js/
+  └── redirect.js
+└── data/
+  └── links.json
 
-Esto hará que el proyecto busque `link1` en `data/links.json` y redirija a la URL configurada.
-
----
-
-https://javimb.link/?link=link1
-
-## Archivos principales
-
-- `index.html`: carga el script de redirección.  
-- `data/links.json`: lista de enlaces con formato `"alias": "url"`.  
-- `js/redirect.js`: lógica de redirección que lee el parámetro `link`.  
-- `404.html`: página que se muestra si el alias no existe.
-
----
-
-## Añadir o modificar enlaces
-
-Edita el archivo `data/links.json` con los alias y URLs deseados, por ejemplo:
+## ✍️ Cómo añadir enlaces
+Edita el archivo `data/links.json` y agrega un nuevo alias:
 
 ```json
 {
   "link1": "https://youtube.com",
-  "link2": "https://openai.com"
+  "link2": "https://github.com"
 }
