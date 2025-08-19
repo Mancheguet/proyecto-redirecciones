@@ -9,14 +9,15 @@ Se basa en archivos estáticos (HTML + JS + JSON) y funciona en GitHub Pages o c
 
 Ejemplo:
 - `https://midominio.com/#link1` → redirige a YouTube.
-- `https://midominio.com/#link2` → redirige a OpenAI.
+- `https://midominio.com/#link2` → redirige a Github.
 - `https://midominio.com/` → muestra una pantalla de bienvenida.
 
 ## 📂 Estructura del proyecto
 ```
 /
 ├── index.html
-├── redirect.js
+└── js/
+    └── redirect.js
 └── data/
     └── links.json
 ```
