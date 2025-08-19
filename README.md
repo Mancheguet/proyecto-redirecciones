@@ -13,12 +13,13 @@ Ejemplo:
 - `https://midominio.com/` → muestra una pantalla de bienvenida.
 
 ## 📂 Estructura del proyecto
-
+```
+/
 ├── index.html
-├── js/
-  └── redirect.js
+├── redirect.js
 └── data/
-  └── links.json
+    └── links.json
+```
 
 ## ✍️ Cómo añadir enlaces
 Edita el archivo `data/links.json` y agrega un nuevo alias:
@@ -28,3 +29,6 @@ Edita el archivo `data/links.json` y agrega un nuevo alias:
   "link1": "https://youtube.com",
   "link2": "https://github.com"
 }
+```
+
+Ahora `https://midominio.com/#link2` llevará a GitHub.
